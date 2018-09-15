@@ -1,0 +1,14 @@
+.jumbotron {
+
+    height: 370px;
+    padding-top: 60px;
+    margin-top: 20px;
+
+
+}
+
+.jumbotron p,h1{
+
+    color: white;
+}
+

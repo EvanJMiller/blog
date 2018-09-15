@@ -1,0 +1,28 @@
+{% load staticfiles %}
+
+
+<div class="border row mb-4">
+    <div class="flex col-sm-4 col-md-4 col-lg-4 imgdiv">
+        <img class="card-img img-fluid" src="{{ MEDIA_URL }}{{ article.image.url }}">
+    </div>
+    <div class="flex col-sm-6 articleInfo">
+
+            <div class="">
+
+                <h3 class="flex title">{{ article.title }}</h3>
+                <p class="author">by {{ article.authorName }} </p>
+                <p class="date">{{ article.date }}</p>
+                <hr>
+
+                <p class="card-text">{{ article.preview }}</p>
+
+                <div class="pull-right">
+                    {% if author_logged_in %}
+                        <a href="{{ article.edit_url }}" class="btn btn-primary pull-right"> Edit Article </a>
+                    {% else %}
+                        <a href="{{ article.get_url }}" class="btn btn-primary pull-right"> Read More </a>
+                    {% endif %}
+                </div>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+
+{% extends 'blog/base.html' %}
+
+{% load static %}
+
+{% block stylesheets %}
+    <link href="{% static 'css/form.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block content%}
+    <br>
+    <br>
+
+        <div class="row">
+            <div class="center-block border offset-3 rounded-10">
+
+                <form class='form-group' action="" method="post">
+                {% csrf_token %}
+                    <h2>Login</h2>
+                    <hr>
+                {{ form.as_p }}
+
+                    <button class = "btn btn-primary" type="submit"> Submit </button>
+                </form>
+
+            </div>
+        </div>
+
+         <!-- /container -->
+
+{% endblock %}

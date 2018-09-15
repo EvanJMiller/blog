@@ -1,0 +1,22 @@
+{% extends 'polls/base.html' %}
+{% load staticfiles %}
+
+
+
+
+{% load static %}
+
+{% block stylesheets %}
+        <link href="{% static 'css/thumbnail.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+
+    {% for article in articles %}
+
+        {% include 'polls/article-thumbnail.html' with article=article %}
+
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,28 @@
+
+{% extends 'blog/base.html' %}
+
+
+{% load staticfiles %}
+
+{% block stylesheets %}
+<link href="{% static 'css/home.css' %}" rel="stylesheet" />
+<link href="{% static 'css/card.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+        {% include 'blog/jumbotron.html' %}
+
+                    {% for row in deck %}
+                        <div class="card-deck">
+
+                            {% for article in row %}
+
+                                    {% include 'blog/card.html' with article=article %}
+
+                            {% endfor %}
+
+                        </div>
+                    {% endfor %}
+{% endblock %}
+

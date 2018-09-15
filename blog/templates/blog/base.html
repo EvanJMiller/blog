@@ -1,0 +1,33 @@
+
+{% load staticfiles %}
+
+<!doctype html>
+<html lang="en">
+
+  <head>
+    {% include  'blog/head-content.html' %}
+
+    <!-- Additional Stylesheets -->
+    {% block stylesheets %}
+    {% endblock %}
+
+  </head>
+
+  <body>
+
+    {% include 'blog/navbar.html' %}
+
+    <main role="main">
+      <div class="container">
+      <!-- Main conatiner for content -->
+
+        {% block content %} {% endblock %}
+
+      </div> <!-- /container -->
+
+    </main>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+textarea[name=preview] {
+    width: 80%;
+    height: 100px;
+}
+textarea[name=body] {
+    width: 80%;
+    height: 450px;
+}
+input {
+
+    min-width: 200px;
+    width: 40%;
+
+}
+
+.container {
+    padding-bottom: 20px;
+    margin-bottom: 60px;
+
+}

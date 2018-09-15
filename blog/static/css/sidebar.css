@@ -1,0 +1,21 @@
+.sidebar {
+
+    margin-top: 40px;
+    margin-left: 100px;
+
+}
+
+.list-group-item {
+
+    height: 40px;
+
+}
+
+.sidebar p {
+    color: gray;
+}
+
+.recent-author, .recent-title {
+    display: inline;
+
+}

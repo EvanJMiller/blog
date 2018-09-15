@@ -1,0 +1,42 @@
+
+{% extends 'blog/base.html' %}
+
+{% load staticfiles %}
+
+{% block stylesheets %}
+    <link href="{% static 'css/form.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content%}
+    <br>
+    <br>
+    <div class="row">
+        <div class="offset-md-3 offset-lg-4 center-block border rounded-10">
+
+
+            {% if errors %}
+                {% for error in errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            {% if message %}
+                <h2>{{ message }}</h2>
+            {% endif %}
+
+            <form class='form' action="" method="post">
+            {% csrf_token %}
+                <h2>Please Register</h2>
+                <hr>
+
+            {{ form.as_p }}
+
+
+                <button type="submit" class="btn btn-primary" > Submit </button>
+            </form>
+
+        </div> <!-- /container -->
+    </div>
+{% endblock %}
