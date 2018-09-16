@@ -4,9 +4,9 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/card.css' %}">
 
 <div class="card">
-  <img class="card-img img-fluid" src="{{ article.image.url }}">
-  <div class="card-body">
-
+  <img class="card-img img-fluid" src="{{ MEDIA_URL }}{{ article.image }}" href="{{ article.get_url }}">
+  <div class="card-body" href="{{ article.get_url }}">
+    <a href="{{ article.get_url }}"></a>
     <h5 class="card-title">{{ article.title }}</h5>
     <p class="card-text">{{ article.preview }}</p>
     <a href="{{ article.get_url }}" class="btn btn-primary">Read More</a>

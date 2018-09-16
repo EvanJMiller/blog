@@ -16,6 +16,11 @@ class RegisterForm(forms.Form):
     username = forms.CharField()
     email = forms.EmailField()
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete="models.Cascade")
+    bio = models.TextField()
+    portrait = models.ImageField()
+
 class ArticleForm(forms.Form):
 
     title = forms.CharField(max_length=300)
@@ -34,12 +39,21 @@ class Article(models.Model):
     subtitle = models.CharField(max_length=300)
     preview = models.TextField()
     body = models.TextField()
-    status = models.CharField(max_length=100)
+
     date = models.DateTimeField()
     tags = models.CharField(max_length=200)
 
     views = models.IntegerField()
-    image = models.ImageField(default='default.png')
+    image = models.ImageField(default='default.png', upload_to='media/')
+
+    STATUS = (
+        ('D', 'Draft'),
+        ('RV', 'Reviewed'),
+        ('R', 'revised'),
+        ('P', 'published'),
+    )
+
+    status = models.CharField(max_length=100, choices=STATUS)
 
     def get_url(self):
 

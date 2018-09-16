@@ -19,7 +19,7 @@ urlpatterns = [
     re_path('articles/(?P<tag>[\w0-9]+)$', views.TagView.as_view(), name='TagView'),
     re_path(r'^articles/(?P<username>[\w0-9]+)', views.articlesByAuthor, name='userArticles'),
     re_path(r'^authors/(?P<username>[\w0-9]+)/edit$', views.editAuthorArticles, name='edit'),
-    re_path(r'^authors/(?P<username>[\w0-9]+)/edit/(?P<id>[0-9]+)', views.editArticle, name='editArticle')
+    re_path(r'^authors/(?P<username>[\w0-9]+)/edit/(?P<id>[0-9]+)', views.EditView.as_view(), name='editArticle')
 
 ]
 

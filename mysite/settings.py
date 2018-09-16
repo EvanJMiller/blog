@@ -24,6 +24,8 @@ SECRET_KEY = '7bap$7)2m4lp@q)qz6k44=syc#(=c&$_%@adkpeecsb%cyb*8s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+THUMBNAIL_DEBUG = True
+
 
 ALLOWED_HOSTS = []
 
@@ -60,6 +62,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                'django.template.context_processors.media',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -125,8 +128,6 @@ STATICFILES_DIRS = [os.path.join(STATIC_ROOT, 'images')]
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = (
-    os.path.join(BASE_DIR, 'blog')
-)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'blog')
 
-MEDIA_URL = '/images/'
+MEDIA_URL = '/media/'

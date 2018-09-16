@@ -1,5 +1,5 @@
 
-{% extends 'polls/base.html' %}
+{% extends 'blog/base.html' %}
 
 {% load staticfiles %}
 
@@ -27,7 +27,7 @@
                 <h2>{{ message }}</h2>
             {% endif %}
 
-            <form class='form' action="" method="post">
+            <form class='form' action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
                 <h2>{{ title }}</h2>
                 <hr>

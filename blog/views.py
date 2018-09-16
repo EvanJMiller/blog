@@ -47,6 +47,60 @@ def editAuthorArticles(request, username):
         else:
             return HttpResponse("<h1> Error! User not found </h1>")
 
+
+class EditView(FormView):
+
+    form_class = ArticleForm
+    template_name = 'blog/base_form.html'
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated and self.request.user.username == self.kwargs['username']:
+            self.id = kwargs['id']
+            article = request.user.article_set.get(pk=self.id)
+            default = {
+                'title': article.title,
+                'preview': article.preview,
+                'slug': article.slug,
+                'subtitle': article.subtitle,
+                'body': article.body,
+                'tags': article.tags,
+                'image': article.image
+            }
+            article_form = ArticleForm(initial=default)
+
+            context = {'form': article_form, 'title': 'Edit Article', 'button_title': 'Save'}
+            return render(self.request, self.template_name, context)
+        else:
+            return JsonResponse({'status': 'false', 'message': 'invalid form', 'errors': 'not authenticated'}, status=500)
+
+    def post(self, request, *args, **kwargs):
+
+        if self.request.user.is_authenticated and self.request.user.username == kwargs['username']:
+            pp(self.request.FILES)
+
+            form = ArticleForm(self.request.POST, self.request.FILES)
+            if form.is_valid():
+
+                article = self.request.user.article_set.get(pk=kwargs['id'])
+                article.title = form.cleaned_data['title']
+                article.slug = form.cleaned_data['slug']
+                article.subtitle = form.cleaned_data['subtitle']
+                article.preview = form.cleaned_data['preview']
+                article.body = form.cleaned_data['body']
+                article.image = request.FILES['image']
+
+                article.tags = form.cleaned_data['tags']
+                article.save()
+
+
+            return HttpResponseRedirect(reverse('blog:edit', args=[kwargs['username']]))
+
+
+
+
+    def form_invalid(self, form):
+        return JsonResponse({'status': 'false', 'message': 'invalid form', 'errors': form.errors}, status=500)
+
 def editArticle(request, username, id):
 
     if request.method == "GET":
@@ -68,9 +122,9 @@ def editArticle(request, username, id):
 
                 article_form = ArticleForm(initial=default)
 
-
                 context = {'form':article_form, 'title': 'Edit Article', 'button_title': 'Save'}
                 return render(request, 'blog/base_form.html', context)
+
             else:
                 return HttpResponse("<h1> Error! Article not found. </h1>")
         else:

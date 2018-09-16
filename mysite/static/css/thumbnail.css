@@ -1,23 +1,44 @@
 .row {
+    height: 25%;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 
-    margin-top: 20px;
-    padding-top:25px;
+.author{
 
+    color: gray;
+    font-size: 16px;
 
+}
+
+.title, .author{
+    display:inline;
+
+}
+
+.articleInfo {
+    margin-top: 15px;
+    margin-bottom: 10px;
+
+}
+
+.card-img {
+    height: 250px;
+    width: 100%;
 
 }
 
 .imgdiv {
 
-    margin-top: 20px;
-    padding-top: 20px;
-    padding-right: 10px;
+    padding: 0px;
+    margin: 20px;
+    height: 25%;
+
 
 }
 
-.card {
-
-    height: 150px;
-
-}
 
