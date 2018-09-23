@@ -1,0 +1,39 @@
+
+.profile-header {
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+
+}
+.profile-img {
+    padding-top: 20px;
+    padding-right:15px;
+    padding-left:20px;
+
+}
+.profile-info {
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+
+}
+
+.bio {
+
+    margin-top: 15px;
+
+}
+
+.recent-articles{
+
+    margin-top: 15px;
+    margin-bottom: 10px;
+
+
+}

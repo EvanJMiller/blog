@@ -1,0 +1,40 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+
+{% load static %}
+
+{% block stylesheets %}
+        <link href="{% static 'css/thumbnail.css' %}" rel="stylesheet"/>
+        <link href="{% static 'css/AuthorPage.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row border justify-content-center profile-header">
+
+        <img class="profile-pic mx-auto d-block rounded-circle" src="{{ MEDIA_URL }}{{ profile.portrait }}" width="200" height="200">
+        <div class="profile-info">
+            <h2 class="text-xs-center" align="center"> {{ profile.user.username }} </h2>
+            <p class="text-center"> {{ profile.header }}</p>
+            <hr>
+            <div class="bio"><p> <b>About:</b> {{ profile.bio }} </p></div>
+        </div>
+    </div>
+
+    <div class="recent-articles">
+        <div>
+            <h4 class="text-xl-center" align="center"> - Recent Articles - </h4>
+        </div>
+    </div>
+
+
+
+    {% if articles %}
+        {% for article in articles %}
+
+            {% include 'blog/article-thumbnail.html' with article=article %}
+
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

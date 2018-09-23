@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+
+{% load static %}
+
+{% block stylesheets %}
+
+        <link href="{% static 'css/profile-thumbnail.css' %}" rel="stylesheet"/>
+        <link href="{% static 'css/AuthorPage.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+
+    {% if profiles %}
+        {% for profile in profiles %}
+
+            {% include 'blog/profile-thumbnail.html' with profile=profile %}
+
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

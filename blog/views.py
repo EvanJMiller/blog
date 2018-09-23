@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login, logout as auth_logout
 
-from .models import LoginForm, RegisterForm,Article, ArticleForm
+from .models import LoginForm, RegisterForm,Article, ArticleForm, Profile
 
 from pprint import pprint as pp
 
@@ -159,6 +159,28 @@ def editArticle(request, username, id):
                 #Invlid form, notify the front end...
                 return JsonResponse({'status': 'false', 'message': 'invalid form', 'errors': form.errors}, status=500)
 
+
+class AuthorsView(TemplateView):
+    template_name = 'blog/AuthorsPage.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['profiles'] = Profile.objects.all()
+        return context
+
+class AboutAuthorView(TemplateView):
+    template_name = 'blog/AboutPage.html'
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data()
+        username = kwargs['username']
+        user = User.objects.filter(username__iexact=username)[0]
+        if user and user.profile:
+            context['profile'] = user.profile
+            context['articles'] = user.article_set.all()
+
+        return context
 
 class ArchiveView(TemplateView):
 

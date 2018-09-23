@@ -1,0 +1,24 @@
+{% load staticfiles %}
+
+<div class="border row mb-4">
+    <div class="profile-img flex col-sm-4 col-md-3 col-lg-3 imgdiv">
+        <img class="profile-pic rounded-circle" src="{{ MEDIA_URL}}{{ profile.portrait }}" width="175" height="175">
+    </div>
+    <div class="flex col-6 profileInfo">
+
+            <div class="">
+
+                <h3 class="flex title">{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
+
+                <p class="article-count">Contributions: {{ profile.num_articles }} </p>
+                <hr>
+
+                <p class="card-text">{{ profile.header }}</p>
+
+                <div class="pull-right">
+                        <a href="{{ profile.get_about_url }}" class="btn btn-primary pull-right"> Learn More </a>
+
+                </div>
+            </div>
+    </div>
+</div>

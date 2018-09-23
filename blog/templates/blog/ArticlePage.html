@@ -15,22 +15,24 @@
             <div class="article-image col-md-3 col-lg-3">
                 <img class="article-img img-fluid" src="{{ MEDIA_URL }}{{ article.image }}">
             </div>
-            <div class="col-md-6 col-lg-8">
+            <div class="col-md-8 col-lg-8">
                         <h2> {{ article.title }} </h2>
-                <p class="subinfo"> {{ article.date.date }} by {{ article.author.first_name }} {{ article.author.last_name }} </p>
+                <p class="subinfo"> {{ article.date.date }} by
+
+                    <a href="{{ article.get_author_about_url }}">{{ article.authorName }}</a></p>
+
                 <p> <i>{{ article.subtitle }}</i></p>
                 {% for tag in article.get_tags %}
                     <span class="badge badge-pill badge-primary"> {{ tag }} </span>
                 {% endfor %}
             </div>
         </div>
-        <div class="row">
-                <div class="col-lg-6 col-md-4">
+        <div class="row content-row">
+                <div class="col-lg-7 col-md-4">
                 <hr>
                 <p> {{ article.body|safe| linebreaks }} </p>
 
                 </div>
-
                 {% include 'blog/sidebar.html' with recent_articles=recent_articles %}
 
         </div>

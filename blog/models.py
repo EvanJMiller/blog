@@ -17,9 +17,19 @@ class RegisterForm(forms.Form):
     email = forms.EmailField()
 
 class Profile(models.Model):
+
     user = models.OneToOneField(User, on_delete="models.Cascade")
-    bio = models.TextField()
-    portrait = models.ImageField()
+    header = models.TextField(default="")
+    bio = models.TextField(default="")
+    portrait = models.ImageField(default='default.png', upload_to='media/')
+
+    def num_articles(self):
+        return len(self.user.article_set.all())
+
+    def get_about_url(self):
+        url = 'http://127.0.0.1:8000/blog/authors/'
+        url += self.user.username + '/' + 'about'
+        return url
 
 class ArticleForm(forms.Form):
 
@@ -76,6 +86,18 @@ class Article(models.Model):
             return author.first_name + " " + author.last_name
         except:
             return ""
+
+    def get_author_about_url(self):
+        try:
+            url = self.author.all()[0].profile.get_about_url()
+            if url:
+                return url
+            else:
+                return '#'
+
+        except:
+            return "#"
+
 
 class Comment(models.Model):
     text = models.CharField(max_length=500)
